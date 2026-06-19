@@ -59,3 +59,23 @@ test("createUser makes user retrievable", async () => {
   expect(retrieved.name).toBe("Alice");
 });
 ```
+
+## Property-Based Tests
+
+When the behavior is an **invariant** rather than one concrete case, assert the invariant over generated inputs instead of hardcoded values. This catches edge cases example tests miss and describes WHAT must always hold.
+
+```typescript
+// Example test: one case
+test("reverse([1,2,3]) is [3,2,1]", () => {
+  expect(reverse([1, 2, 3])).toEqual([3, 2, 1]);
+});
+
+// Property test: the invariant for all inputs
+test("reversing twice returns the original", () => {
+  forAll(arrayOf(integers), (xs) => {
+    expect(reverse(reverse(xs))).toEqual(xs);
+  });
+});
+```
+
+Good fits: round-trips (`encode`/`decode`), idempotence, commutativity, results that must always satisfy a constraint. Reach for an example test when the expected output is a specific known value, not a rule. Any PBT library works (`forAll`/`arrayOf` above are illustrative).

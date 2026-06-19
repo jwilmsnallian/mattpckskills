@@ -11,6 +11,7 @@ The user has asked you to teach them something. This is a stateful request - the
 
 Treat the current directory as a teaching workspace. The state of their learning is captured in this directory in several files:
 
+- `index.html`: A **mobile-first dashboard** — the home page for the workspace, linking every lesson, reference document, the mission, and resources. It is the learner's main entry point, especially on a phone. Use the format in [DASHBOARD-FORMAT.md](./DASHBOARD-FORMAT.md).
 - `MISSION.md`: A document capturing the _reason_ the user is interested in the topic. This should be used to ground all teaching. Use the format in [MISSION-FORMAT.md](./MISSION-FORMAT.md).
 - `./reference/*.html`: A directory of reference materials. These are the compressed learnings from the lessons - cheat sheets, reference algorithms, syntax, yoga poses, glossaries. They are the raw units of learning. They should be beautiful documents which print out well, and are designed for quick reference.
 - `RESOURCES.md`: A list of resources which can be explored to ground your teaching in contextual knowledge, or to acquire knowledge and wisdom. Use the format in [RESOURCES-FORMAT.md](./RESOURCES-FORMAT.md).
@@ -50,6 +51,8 @@ A lesson is the main thing you produce — the unit in which knowledge and skill
 
 A lesson should be **beautiful** — clean, readable typography and layout — since the user will return to these later to review. Think Tufte.
 
+Represent hierarchical or tree structures with semantic HTML (nested lists styled via CSS), not ASCII art — proportional fonts break ASCII alignment. If you must use ASCII, wrap it in `<pre><code>` and never mix tree characters with inline styling.
+
 The lesson should be short, and completable very quickly. Learners' working memory is very small, and we need to stay within it. But each lesson should give the user a single tangible win that they can build on. It should be directly tied to the mission, and should be in the user's zone of proximal development.
 
 If possible, open the lesson file for the user by running a CLI command.
@@ -67,6 +70,22 @@ Lessons are built from reusable **components**, stored in `./assets/`: styleshee
 Reuse is the default, not the exception. Before authoring a lesson, read `./assets/` and build from the components already there. When a lesson needs something new and reusable, write it as a component in `./assets/` and link to it — never inline code a future lesson would duplicate.
 
 A shared stylesheet is the first component every workspace earns: every lesson links it, so the lessons look like one consistent course rather than a pile of one-offs. As the workspace grows, so should the component library.
+
+## The Dashboard
+
+The workspace has a single entry point: `index.html` at the root — a **mobile-first dashboard** linking every lesson, reference document, the mission, and the key resources. It's the first thing the learner opens, often on a phone. Create it once the first lesson exists, and keep it current every time you add a lesson or reference. Use the format in [DASHBOARD-FORMAT.md](./DASHBOARD-FORMAT.md).
+
+Lessons and the dashboard are plain HTML, so they open in any browser. To review on a phone, serve the workspace directory with any static server (e.g. `python -m http.server`) and open it over the local network, or through a secure tunnel such as Tailscale or Cloudflare Tunnel for access from anywhere. Always point the learner at `index.html` as the home page.
+
+## Styling HTML outputs
+
+Style every HTML output — lessons, the dashboard, and reference documents — with the Tailwind v4 Play CDN rather than a hand-written `<style>` block. Tailwind's utility vocabulary is already in your training data, so you stop re-inventing an ad-hoc design system each session and drifting on colours, spacing, and radii across a multi-lesson course — and each file stays far lighter.
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+```
+
+Put any custom theming in a `<style type="text/tailwindcss">` block. The CDN is a single script tag with no build step, but it needs the network to load — for a file the learner must read fully offline, inline the CSS instead.
 
 ## The Mission
 
@@ -107,7 +126,7 @@ For skill acquisition, difficulty is the tool. Effortful retrieval is what build
 
 Each of these should be based on a **feedback loop**, where the user receives feedback on their performance. This feedback loop should be as tight as possible, giving feedback immediately - and ideally automatically.
 
-For quizzes, each answer should be exactly the same number of words (and characters, if possible). Don't give the user any clues about the answer through formatting.
+For quizzes, each answer should be exactly the same number of words (and characters, if possible). Don't give the user any clues about the answer through formatting. Vary which position holds the correct answer across questions, and make every distractor a plausible, confidently-stated mistake — never an obvious throwaway.
 
 ## Acquiring Wisdom
 

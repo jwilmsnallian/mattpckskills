@@ -10,13 +10,13 @@ The issue tracker and triage label vocabulary should have been provided to you �
 
 ## Process
 
-1. Explore the repo to understand the current state of the codebase, if you haven't already. Use the project's domain glossary vocabulary throughout the PRD, and respect any ADRs in the area you're touching.
+1. Explore the repo to understand the current state of the codebase, if you haven't already. Use the project's domain glossary vocabulary throughout the PRD, and respect accepted ADRs in the area you're touching; treat proposed ADRs as planning context only when they belong to the current work. If the feature has a decision ledger (`docs/decisions/`), read it — its records are the resolved answers this PRD must preserve verbatim, not soften. If the project keeps a `ROADMAP.md` (or a product/vision doc), read it so this PRD is grounded in the larger goal the slice advances.
 
 2. Sketch out the seams at which you're going to test the feature. Existing seams should be preferred to new ones. Use the highest seam possible. If new seams are needed, propose them at the highest point you can. The fewer seams across the codebase, the better - the ideal number is one.
 
 Check with the user that these seams match their expectations.
 
-3. Write the PRD using the template below, then publish it to the project issue tracker. Apply the `ready-for-agent` triage label - no need for additional triage.
+3. Write the PRD using the template below. Before publishing, check coverage: every decision-ledger record must map to a user story, implementation decision, or testing decision, with its constraints preserved exactly — surface any record you couldn't place rather than dropping it. Then publish it to the project issue tracker. Apply the `ready-for-agent` triage label - no need for additional triage. If a `ROADMAP.md` tracks this work, move the slice you just specified to its `Now`/`Done` bucket and link this PRD, so the roadmap stays a live picture of what's left.
 
 <prd-template>
 

@@ -10,6 +10,17 @@ How the engineering skills should consume this repo's domain documentation when 
 
 If any of these files don't exist, **proceed silently**. Don't flag their absence; don't suggest creating them upfront. The `/domain-modeling` skill (reached via `/grill-with-docs` and `/improve-codebase-architecture`) creates them lazily when terms or decisions actually get resolved.
 
+## ADR status
+
+ADR `status` frontmatter is part of the contract:
+
+- **`accepted`** ADRs are in-force architecture.
+- ADRs with **no status frontmatter** are legacy ADRs — treat them as `accepted`.
+- **`proposed`** ADRs are planning context, not in-force architecture. Use them only when they belong to the plan or issue you're working on.
+- **`deprecated`** and **`superseded by ADR-NNNN`** ADRs are historical — don't build new work around them except to explain why they changed.
+
+When you create an ADR during planning, start it as `proposed`; promote it to `accepted` only after the implementing work lands.
+
 ## File structure
 
 Single-context repo (most repos):
@@ -46,6 +57,6 @@ If the concept you need isn't in the glossary yet, that's a signal — either yo
 
 ## Flag ADR conflicts
 
-If your output contradicts an existing ADR, surface it explicitly rather than silently overriding:
+If your output contradicts an accepted ADR, surface it explicitly rather than silently overriding:
 
 > _Contradicts ADR-0007 (event-sourced orders) — but worth reopening because…_
