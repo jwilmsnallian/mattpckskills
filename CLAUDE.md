@@ -116,6 +116,8 @@ Skills are organized into bucket folders under `skills/`:
 
 Every skill in `engineering/`, `productivity/`, or `misc/` must have a reference in the top-level `README.md` and an entry in `.claude-plugin/plugin.json`. Skills in `joery/`, `personal/`, `in-progress/`, and `deprecated/` must not appear in either — this is also what keeps them out of the way during syncs (folders that don't exist upstream can never conflict).
 
+`scripts/link-skills.sh` symlinks repo skills into `~/.claude/skills/` so they're usable everywhere. It links `engineering/`, `productivity/`, `misc/`, and `joery/`, and **skips** `personal/`, `in-progress/`, and `deprecated/`. Re-run it after adding a new skill.
+
 Each skill entry in the top-level `README.md` must link the skill name to its `SKILL.md`.
 
 Each bucket folder has a `README.md` that lists every skill in the bucket with a one-line description, with the skill name linked to its `SKILL.md`. Bucket `README.md`s and the top-level `README.md` group entries into **User-invoked** and **Model-invoked**.
