@@ -17,6 +17,6 @@ Keep a running outline of the branches so a long session doesn't lose its place 
 
 ## Prototype UI decisions, don't describe them
 
-When a question is spatial — layout, control placement, flow, visual hierarchy, modal-vs-page — text is a poor medium. Generate a minimal throwaway HTML mockup with 2+ variants side by side and let the user react. Delegate the file to a sub-agent so the grilling thread stays focused, then resume with one question: "which variant?" For a richer interactive comparison, hand off to [`prototype`](../../engineering/prototype/SKILL.md).
+When a question is spatial — layout, control placement, flow, visual hierarchy, modal-vs-page — text is a poor medium. Generate a minimal throwaway HTML mockup with 2+ variants side by side and let the user react. Delegate the file to a sub-agent so the grilling thread stays focused, then resume with one question: "which variant?" For a richer interactive comparison, hand off to the `prototype` skill.
 
 Capture the choice before deleting the mockup: the **settled convention** goes in `DESIGN.md` ("primary actions live in a sticky bottom bar"), like any resolved term; if the choice was a real trade-off worth an ADR, record the *why* there — and paste a screenshot or the variant markup into it first, so the rejected options survive the mockup's deletion. Then delete the mockup.
