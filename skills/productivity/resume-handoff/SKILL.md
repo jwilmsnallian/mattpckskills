@@ -2,6 +2,7 @@
 name: resume-handoff
 description: Safely resume work from a handoff document — check drift, re-probe unverified claims, and read the source of truth before acting. Use when picking up a handoff written by handoff.
 argument-hint: "Path to the handoff document (optional)"
+disable-model-invocation: true
 ---
 
 If no argument passed, check the latest handoff file in the OS temp directory — not the workspace.
