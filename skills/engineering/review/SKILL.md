@@ -1,8 +1,6 @@
 ---
 name: review
-description: Review the changes since a fixed point (commit, branch, tag, or merge-base) along two axes — Standards (does the code follow this repo's documented coding standards?) and Spec (does the code match what the originating issue/PRD asked for?). Runs both reviews in parallel sub-agents and reports them side by side. Use when the user wants to review a branch, a PR, work-in-progress changes, or asks to "review since X".
-metadata:
-  internal: true
+description: Review the changes since a fixed point (commit, branch, tag, or merge-base) along two axes — Standards (does the code follow this repo's documented coding standards?) and Spec (does the code match what the originating issue/PRD asked for, in full?). Runs both reviews in parallel sub-agents and reports them side by side. Use when the user wants to review a branch, a PR, or work-in-progress changes, asks to "review since X", or after implementing an issue to confirm every acceptance criterion is met. A caller (e.g. `/implement`) may pass the issue/spec path directly as the spec source.
 ---
 
 # Review
@@ -28,10 +26,12 @@ Capture the diff command once: `git diff <fixed-point>...HEAD` (three-dot, so th
 
 Look for the originating spec, in this order:
 
-1. Issue references in the commit messages (`#123`, `Closes #45`, GitLab `!67`, etc.) — fetch via the workflow in `docs/agents/issue-tracker.md`.
-2. A path the user passed as an argument.
+1. **A spec/issue path supplied by the caller or user** — an argument passed to this skill, including an issue file handed over by `/implement` (e.g. `.scratch/<feature>/issues/NN-*.md`). Take it as-is; this is the authoritative spec and its acceptance-criteria checkboxes are the coverage checklist.
+2. Issue references in the commit messages (`#123`, `Closes #45`, GitLab `!67`, etc.) — fetch via the workflow in `docs/agents/issue-tracker.md`.
 3. A PRD/spec file under `docs/`, `specs/`, or `.scratch/` matching the branch name or feature.
 4. If nothing is found, ask the user where the spec is. If they say there isn't one, the **Spec** sub-agent will skip and report "no spec available".
+
+When the spec is a single issue file, the Spec axis is also a **completion check**: every acceptance-criterion checkbox must be satisfied by the diff, and any that isn't is a finding.
 
 ### 3. Identify the standards sources
 
@@ -60,7 +60,7 @@ Send a single message with two `Agent` tool calls. Use the `general-purpose` sub
 
 - The diff command and commit list.
 - The path or fetched contents of the spec.
-- The brief: "Read the spec. Then read the diff. Report: (a) requirements the spec asked for that are missing or partial; (b) behaviour in the diff that wasn't asked for (scope creep); (c) requirements that look implemented but where the implementation looks wrong. Quote the spec line for each finding. Under 400 words."
+- The brief: "Read the spec. Then read the diff. Report: (a) requirements the spec asked for that are missing or partial; (b) behaviour in the diff that wasn't asked for (scope creep); (c) requirements that look implemented but where the implementation looks wrong. If the spec is an issue with an acceptance-criteria checklist, walk **each** checkbox and state met / partial / missing. Quote the spec line for each finding. Under 400 words."
 
 If the spec is missing, skip the Spec sub-agent and note this in the final report.
 

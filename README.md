@@ -162,6 +162,7 @@ Skills I use daily for code work.
 **Model-invoked**
 
 - **[diagnosing-bugs](./skills/engineering/diagnosing-bugs/SKILL.md)** — Disciplined diagnosis loop for hard bugs and performance regressions: reproduce → minimise → hypothesise → instrument → fix → regression-test.
+- **[review](./skills/engineering/review/SKILL.md)** — Two-axis review of the diff since a fixed point: Standards (repo coding standards) and Spec (does it fully implement the originating issue/PRD?), run as parallel sub-agents. Accepts an issue path as the spec source.
 - **[resolving-merge-conflicts](./skills/engineering/resolving-merge-conflicts/SKILL.md)** — Work through an in-progress git merge/rebase conflict from primary sources, preserving both intents and running the project's checks.
 - **[tdd](./skills/engineering/tdd/SKILL.md)** — Test-driven development with a red-green-refactor loop. Builds features or fixes bugs one vertical slice at a time.
 - **[domain-modeling](./skills/engineering/domain-modeling/SKILL.md)** — Actively build and sharpen a project's domain model — challenge terms against the glossary, stress-test with edge-case scenarios, and update `CONTEXT.md` and ADRs inline.

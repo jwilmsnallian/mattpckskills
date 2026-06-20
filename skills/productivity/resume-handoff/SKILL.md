@@ -4,6 +4,8 @@ description: Safely resume work from a handoff document — check drift, re-prob
 argument-hint: "Path to the handoff document (optional)"
 ---
 
+If no argument passed, check the latest handoff file in the OS temp directory — not the workspace.
+
 A handoff is a starting hypothesis, not gospel. It was written by an earlier session (with `/handoff`) and may have drifted since, or carried claims that were never checked. Read it, then before acting on it:
 
 1. **Check drift** — compare the handoff's anchor SHA to current `HEAD` (`git log --oneline <anchor>..HEAD`); re-run `gh pr list` / `git worktree list`. "Remaining" work may have merged or be in flight since it was written.

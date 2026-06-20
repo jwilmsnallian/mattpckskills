@@ -21,6 +21,7 @@ Reachable only when you type them (`disable-model-invocation: true`).
 Model- or user-reachable (rich trigger phrasing so the model can reach for them).
 
 - **[diagnosing-bugs](./diagnosing-bugs/SKILL.md)** — Disciplined diagnosis loop for hard bugs and performance regressions: reproduce → minimise → hypothesise → instrument → fix → regression-test.
+- **[review](./review/SKILL.md)** — Two-axis review of the diff since a fixed point: Standards (repo coding standards) and Spec (does it fully implement the originating issue/PRD?), run as parallel sub-agents. Accepts an issue path as the spec source.
 - **[resolving-merge-conflicts](./resolving-merge-conflicts/SKILL.md)** — Work through an in-progress git merge/rebase conflict from primary sources, preserving both intents and running the project's checks.
 - **[tdd](./tdd/SKILL.md)** — Test-driven development with a red-green-refactor loop. Builds features or fixes bugs one vertical slice at a time.
 - **[domain-modeling](./domain-modeling/SKILL.md)** — Actively build and sharpen a project's domain model — challenge terms, stress-test with scenarios, update `CONTEXT.md` and ADRs inline.
