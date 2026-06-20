@@ -41,6 +41,7 @@ Anything in the repo that documents how code should be written. Common locations
 - `CONTRIBUTING.md`
 - `CONTEXT.md`, `CONTEXT-MAP.md`, per-context `CONTEXT.md` files
 - `docs/adr/` (accepted architectural decisions are standards)
+- `.claude/rules/*.md` (path-scoped coding rules, including any symlinked shared rule set — these are standards; for path-scoped ones, apply each rule to the diff files its `paths:` globs match)
 - `.editorconfig`, `eslint.config.*`, `biome.json`, `prettier.config.*`, `tsconfig.json` (machine-enforced standards — note them but don't re-check what tooling already checks)
 - Any `STYLE.md`, `STANDARDS.md`, `STYLEGUIDE.md`, or similar at the repo root or under `docs/`
 

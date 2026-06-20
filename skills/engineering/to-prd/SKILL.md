@@ -10,7 +10,7 @@ The issue tracker and triage label vocabulary should have been provided to you �
 
 ## Process
 
-1. Explore the repo to understand the current state of the codebase, if you haven't already. Use the project's domain glossary vocabulary throughout the PRD, and respect accepted ADRs in the area you're touching; treat proposed ADRs as planning context only when they belong to the current work. If the feature has a decision ledger (`docs/decisions/`), read it — its records are the resolved answers this PRD must preserve verbatim, not soften. If the project keeps a `ROADMAP.md` (or a product/vision doc), read it so this PRD is grounded in the larger goal the slice advances.
+1. Explore the repo to understand the current state of the codebase, if you haven't already. Use the project's domain glossary vocabulary throughout the PRD, and respect accepted ADRs in the area you're touching; treat proposed ADRs as planning context only when they belong to the current work. Skim any project coding-standards rules (`.claude/rules/`, including a symlinked shared rule set) so implementation/testing decisions in the PRD align with the project's conventions. If the feature has a decision ledger (`docs/decisions/`), read it — its records are the resolved answers this PRD must preserve verbatim, not soften. If the project keeps a `ROADMAP.md` (or a product/vision doc), read it so this PRD is grounded in the larger goal the slice advances.
 
 2. Sketch out the seams at which you're going to test the feature. Existing seams should be preferred to new ones. Use the highest seam possible. If new seams are needed, propose them at the highest point you can. The fewer seams across the codebase, the better - the ideal number is one.
 

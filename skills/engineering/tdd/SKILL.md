@@ -44,7 +44,7 @@ RIGHT (vertical):
 
 ### 1. Planning
 
-When exploring the codebase, use the project's domain glossary so that test names and interface vocabulary match the project's language, and respect accepted ADRs in the area you're touching. Treat proposed ADRs as planning context only when they belong to the current implementation.
+When exploring the codebase, use the project's domain glossary so that test names and interface vocabulary match the project's language, and respect accepted ADRs in the area you're touching. Treat proposed ADRs as planning context only when they belong to the current implementation. Also consult any project coding-standards rules (`.claude/rules/`, including a symlinked shared rule set) for the files you'll touch, so tests and the code under test follow the project's conventions.
 
 Before writing any code:
 

@@ -17,7 +17,7 @@ Work from whatever is already in the conversation context. If the user passes an
 
 ### 2. Explore the codebase (optional)
 
-If you have not already explored the codebase, do so to understand the current state of the code. Issue titles and descriptions should use the project's domain glossary vocabulary, and respect accepted ADRs in the area you're touching; treat proposed ADRs as planning context only when they belong to the current work. If the plan has a decision ledger (`docs/decisions/`), read it — its records are the resolved answers the issue set must cover end-to-end without weakening their constraints.
+If you have not already explored the codebase, do so to understand the current state of the code. Issue titles and descriptions should use the project's domain glossary vocabulary, and respect accepted ADRs in the area you're touching; treat proposed ADRs as planning context only when they belong to the current work. Skim any project coding-standards rules (`.claude/rules/`, including a symlinked shared rule set) so the slices don't propose work that cuts against the project's conventions. If the plan has a decision ledger (`docs/decisions/`), read it — its records are the resolved answers the issue set must cover end-to-end without weakening their constraints.
 
 ### 3. Draft vertical slices
 
