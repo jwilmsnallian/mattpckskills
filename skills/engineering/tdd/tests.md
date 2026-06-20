@@ -1,18 +1,10 @@
 # Good and Bad Tests
 
+The characteristics below are language-neutral. For idiomatic, worked examples in each language, see [DOTNET.md](DOTNET.md) (xUnit/NUnit) and [TYPESCRIPT.md](TYPESCRIPT.md) (vitest/jest).
+
 ## Good Tests
 
-**Integration-style**: Test through real interfaces, not mocks of internal parts.
-
-```typescript
-// GOOD: Tests observable behavior
-test("user can checkout with valid cart", async () => {
-  const cart = createCart();
-  cart.add(product);
-  const result = await checkout(cart, paymentMethod);
-  expect(result.status).toBe("confirmed");
-});
-```
+**Integration-style**: test through real interfaces, not mocks of internal parts. A good test exercises a public entry point and asserts on the observable result — "user can checkout with a valid cart" → assert the returned status, not which collaborators were called.
 
 Characteristics:
 
@@ -24,58 +16,22 @@ Characteristics:
 
 ## Bad Tests
 
-**Implementation-detail tests**: Coupled to internal structure.
-
-```typescript
-// BAD: Tests implementation details
-test("checkout calls paymentService.process", async () => {
-  const mockPayment = jest.mock(paymentService);
-  await checkout(cart, payment);
-  expect(mockPayment.process).toHaveBeenCalledWith(cart.total);
-});
-```
+**Implementation-detail tests**: coupled to internal structure.
 
 Red flags:
 
 - Mocking internal collaborators
 - Testing private methods
-- Asserting on call counts/order
+- Asserting on call counts/order (e.g. "checkout called `payment.process`") — this tests HOW, not WHAT
 - Test breaks when refactoring without behavior change
 - Test name describes HOW not WHAT
-- Verifying through external means instead of interface
-
-```typescript
-// BAD: Bypasses interface to verify
-test("createUser saves to database", async () => {
-  await createUser({ name: "Alice" });
-  const row = await db.query("SELECT * FROM users WHERE name = ?", ["Alice"]);
-  expect(row).toBeDefined();
-});
-
-// GOOD: Verifies through interface
-test("createUser makes user retrievable", async () => {
-  const user = await createUser({ name: "Alice" });
-  const retrieved = await getUser(user.id);
-  expect(retrieved.name).toBe("Alice");
-});
-```
+- **Verifying through external means instead of the interface** — e.g. asserting a row exists by querying the database directly after `createUser`, instead of round-tripping through `getUser`. Verify through the interface: create, then retrieve through the public API, and assert on what comes back.
 
 ## Property-Based Tests
 
 When the behavior is an **invariant** rather than one concrete case, assert the invariant over generated inputs instead of hardcoded values. This catches edge cases example tests miss and describes WHAT must always hold.
 
-```typescript
-// Example test: one case
-test("reverse([1,2,3]) is [3,2,1]", () => {
-  expect(reverse([1, 2, 3])).toEqual([3, 2, 1]);
-});
+- Example test: one case — `reverse([1,2,3])` is `[3,2,1]`.
+- Property test: the invariant for all inputs — reversing twice returns the original; encoding then decoding round-trips; the result always satisfies some constraint.
 
-// Property test: the invariant for all inputs
-test("reversing twice returns the original", () => {
-  forAll(arrayOf(integers), (xs) => {
-    expect(reverse(reverse(xs))).toEqual(xs);
-  });
-});
-```
-
-Good fits: round-trips (`encode`/`decode`), idempotence, commutativity, results that must always satisfy a constraint. Reach for an example test when the expected output is a specific known value, not a rule. Any PBT library works (`forAll`/`arrayOf` above are illustrative).
+Good fits: round-trips (`encode`/`decode`), idempotence, commutativity, results that must always satisfy a constraint. Reach for an example test when the expected output is a specific known value, not a rule. See the companions for the per-language PBT library (FsCheck/CsCheck in .NET, fast-check in TS).

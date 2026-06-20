@@ -68,31 +68,11 @@ When designing an interface, ask:
 
 Good interfaces make testing natural:
 
-1. **Accept dependencies, don't create them.**
-
-   ```typescript
-   // Testable
-   function processOrder(order, paymentGateway) {}
-
-   // Hard to test
-   function processOrder(order) {
-     const gateway = new StripeGateway();
-   }
-   ```
-
-2. **Return results, don't produce side effects.**
-
-   ```typescript
-   // Testable
-   function calculateDiscount(cart): Discount {}
-
-   // Hard to test
-   function applyDiscount(cart): void {
-     cart.total -= discount;
-   }
-   ```
-
+1. **Accept dependencies, don't create them.** A module that constructs its own collaborators can't be exercised without them; one that receives them can be driven with stand-ins. (In .NET this is constructor injection through the DI container; in TS it's a parameter or a factory.)
+2. **Return results, don't produce side effects.** A function that returns a value is tested by inspecting the return; one that mutates shared state forces the test to reconstruct and re-inspect that state.
 3. **Small surface area.** Fewer methods = fewer tests needed. Fewer params = simpler test setup.
+
+For idiomatic, worked examples per language, see [DOTNET.md](DOTNET.md) and [TYPESCRIPT.md](TYPESCRIPT.md).
 
 ## Relationships
 
@@ -105,10 +85,11 @@ Good interfaces make testing natural:
 ## Rejected framings
 
 - **Depth as ratio of implementation-lines to interface-lines** (Ousterhout): rewards padding the implementation. We use depth-as-leverage instead.
-- **"Interface" as the TypeScript `interface` keyword or a class's public methods**: too narrow — interface here includes every fact a caller must know.
+- **"Interface" as the C#/TypeScript `interface` keyword (or a class's public methods)**: too narrow — interface here includes every fact a caller must know: invariants, ordering, error modes, performance. The language keyword is one way to *express* a seam, not what the word means here. (.NET teams especially: extracting an `IFoo` does not by itself create a seam — see [DOTNET.md](DOTNET.md).)
 - **"Boundary"**: overloaded with DDD's bounded context. Say **seam** or **interface**.
 
 ## Going deeper
 
 - **Deepening a cluster given its dependencies** — see [DEEPENING.md](DEEPENING.md): dependency categories, seam discipline, and replace-don't-layer testing.
 - **Exploring alternative interfaces** — see [DESIGN-IT-TWICE.md](DESIGN-IT-TWICE.md): spin up parallel sub-agents to design the interface several radically different ways, then compare on depth, locality, and seam placement.
+- **Language-specific idioms** — [DOTNET.md](DOTNET.md) for C#/.NET (constructor injection, the `IFoo` reflex, EF Core / Testcontainers / Moq) and [TYPESCRIPT.md](TYPESCRIPT.md) for TS (parameter injection, PGLite, fakes, structural typing). Read the one that matches the code you're touching.

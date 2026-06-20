@@ -71,6 +71,8 @@ When domain relationships are being discussed, stress-test them with specific sc
 
 When the user states how something works, check whether the code agrees. If you find a contradiction, surface it: "Your code cancels entire Orders, but you just said partial cancellation is possible — which is right?"
 
+Once a term settles, it should land in code as a type that makes illegal states unrepresentable (value objects, strongly-typed IDs, closed state sets) — keep that out of `CONTEXT.md`, which stays implementation-free, and see the `codebase-design` companions for the per-language idioms ([DOTNET.md](../codebase-design/DOTNET.md) / [TYPESCRIPT.md](../codebase-design/TYPESCRIPT.md)).
+
 ### Update CONTEXT.md inline
 
 When a term is resolved, update `CONTEXT.md` right there. Don't batch these up — capture them as they happen. Use the format in [CONTEXT-FORMAT.md](./CONTEXT-FORMAT.md).
