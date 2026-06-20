@@ -27,6 +27,7 @@ which file-shapes exist**, not guessed by the agent.
 | `mcp-tools.md` | touching `Tools/`, `*Mcp*` |
 | `frontend.md` | touching `*.ts` / `*.tsx` |
 | `testing.md` | touching `*Tests.cs`, `tests/` |
+| `integration-tests.md` | touching `*IntegrationTests/`, `EndToEnd/`, `*E2ETests/` |
 
 ## What is NOT here
 
