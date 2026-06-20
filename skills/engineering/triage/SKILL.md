@@ -27,13 +27,15 @@ Two **category** roles:
 - `bug` — something is broken
 - `enhancement` — new feature or improvement
 
-Six **state** roles:
+Eight **state** roles:
 
 - `needs-triage` — maintainer needs to evaluate
 - `needs-info` — waiting on reporter for more information
 - `ready-for-agent` — fully specified, ready for an AFK agent
 - `ready-for-human` — needs human implementation
 - `paused` — fully specified, but can't start until a prerequisite issue closes
+- `in-progress` — an agent or human has started implementing it
+- `done` — implemented and verified; terminal (on GitHub/GitLab, represented by closing the issue rather than a label — see `triage-labels.md`)
 - `wontfix` — will not be actioned
 
 For a PR, the same states read against the attached code: `ready-for-agent` means a brief is attached and an agent should take the next step on the diff; `ready-for-human` means it's ready for a human to merge.
@@ -42,7 +44,7 @@ Every triaged issue should carry exactly one category role and one state role. I
 
 These are canonical role names — the actual label strings used in the issue tracker may differ. The mapping should have been provided to you - run `/setup-matt-pocock-skills` if not.
 
-State transitions: an unlabeled issue normally goes to `needs-triage` first; from there it moves to `needs-info`, `ready-for-agent`, `ready-for-human`, or `wontfix`. `needs-info` returns to `needs-triage` once the reporter replies. A `ready-for-agent` or `ready-for-human` issue moves to `paused` when a prerequisite blocks it, and back to its ready role once the blockers close. The maintainer can override at any time — flag transitions that look unusual and ask before proceeding.
+State transitions: an unlabeled issue normally goes to `needs-triage` first; from there it moves to `needs-info`, `ready-for-agent`, `ready-for-human`, or `wontfix`. `needs-info` returns to `needs-triage` once the reporter replies. A `ready-for-agent` or `ready-for-human` issue moves to `paused` when a prerequisite blocks it, and back to its ready role once the blockers close. Once implementation starts, a ready issue moves to `in-progress`, then to `done` when the work is built and verified — these last two transitions are normally driven by the implementing skill (`/implement`), not by triage, but triage may set them manually too. The maintainer can override at any time — flag transitions that look unusual and ask before proceeding.
 
 ## Invocation
 
