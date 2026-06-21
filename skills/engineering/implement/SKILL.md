@@ -32,6 +32,16 @@ Once the Spec axis is clean, write completion state back to the issue you were w
 
 The `Status:`/closed state is the source of truth for done-ness; the boxes are per-criterion detail. Keep them consistent — if they'd disagree, fix the boxes, don't weaken the status.
 
+## Carry deferred work into the issue that will do it
+
+The completion comment on a closed issue is a record — no future agent reads a *closed* issue before starting a new one. So anything you deferred that a *later* issue must pick up (a follow-up the boundary/integration/etc. issue has to do, a decision left provisional, a guard you moved out and something downstream must re-add) does not belong only in the closed issue's comment. Put it where it will actually be read:
+
+1. Find the downstream issue that owns the follow-up (check the slice order / `Blocked by` lines — and verify by reading its title and body; don't assume "the next number" is the right one).
+2. Add the carry-over there: a short note under its body, and if it's a hard requirement, a new acceptance box so it can't be silently skipped.
+3. Keep it concise but self-contained — name the concrete thing to do and why, so the future agent needs no archaeology. A closed-issue comment may still record the decision, but it is not the hand-off.
+
+If no downstream issue owns it and it's still required, that's a missing issue — flag it to the user rather than burying it in a comment.
+
 ## Roll the roadmap up (only if there is one)
 
 If this repo keeps a `ROADMAP.md` and the issue you just closed was the **last** open issue of its feature, the backing roadmap candidate is now done — reconcile it (the `roadmap` skill derives candidate status from the issues and archives shipped work). Skip entirely for repos with no `ROADMAP.md`, or when the feature still has open issues.
