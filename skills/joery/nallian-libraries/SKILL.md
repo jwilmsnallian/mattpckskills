@@ -22,7 +22,8 @@ Based on the query, determine which reference to load. Load **only one**.
 | Query matches | Reference file |
 |---------------|----------------|
 | "notification-center", "notification", `INotificationCenter`, `NotificationRequest`, receivers, audiences, `IEmailable`, `ISmsable`, `IFeedable` | [references/notification-center.md](references/notification-center.md) |
-| `Nallian.Common`, `Result`, `Result.Ok`, `Result.NotFound`, `Result.Conflict`, `Result.UnAuthorized`, `FluentResults`, common exceptions, `Helper.SqlGuid` — including "I know `Result` but need a specific factory method / its signature" | [references/extensions.md](references/extensions.md) (look up `Nallian.Common`) — see also [references/library-index.md](references/library-index.md) |
+| `Result`, `Result.Ok`, `Result.NotFound`, `Result.Conflict`, `Result.UnAuthorized`, `FluentResult(s)`, error codes, `IError`, "which factory methods / error types does Result expose" | [references/fluent-result.md](references/fluent-result.md) — **content cheat-sheet, answer is on the page** |
+| Other `Nallian.Common` surfaces (common exceptions, `Helper.SqlGuid`, reason/metadata system) | [references/extensions.md](references/extensions.md) (look up `Nallian.Common`) — see also [references/library-index.md](references/library-index.md) |
 | "organisation-sdk", "org-sdk", `IOrganisationApi`, `OrganisationApiOptions`, consuming the Organisation Data API from another app | [references/organisation-sdk.md](references/organisation-sdk.md) |
 | Any other `Nallian.*` namespace, type, or library name | [references/extensions.md](references/extensions.md) — also consult [references/library-index.md](references/library-index.md) to identify the library |
 

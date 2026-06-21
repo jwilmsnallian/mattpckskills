@@ -1,5 +1,12 @@
 # Nallian Extensions Lookup
 
+> **This is a procedure, not a fact sheet.** It tells you *how to find* a Nallian.* API; it does
+> not list the APIs themselves. Do **not** grep this file for a type or method name and conclude
+> "not found" — execute the steps below. Step 1 is: read the source in the local clone
+> (`~/nalcode/Nallian.Extensions/src/<Library>/`). That clone almost always has the answer.
+> (For `Result` / `FluentResult` specifically, the answer is already written out in
+> [fluent-result.md](fluent-result.md) — go there instead.)
+
 ## Dynamic Context
 
 Before starting, determine the context by running these checks yourself:
