@@ -4,12 +4,13 @@ Applies to every Nallian .NET/C# project. Project-specific rules (domain quirks,
 model, named layers) live in this repo's own `.claude/rules/`.
 
 ## C# language
-- Nullable reference types are **disabled**. Never write `string?` / `object?` / `T?` on a reference
-  type. Value-type optionals (`int?`, `Guid?`, `DateTime?`) are fine when genuinely optional.
+- Nullable reference types are **enabled** (the .NET default, and what every Nallian repo ships).
+  Annotate honestly: `string?` for a genuinely-nullable reference, non-nullable otherwise. Don't
+  reach for the null-forgiving `!` to silence a warning you haven't actually reasoned about.
 - Initialize collections with `= []`, not `= new()` / `= new List<T>()`.
 
 ## Time & identity — never call the ambient APIs
-Inject `ISystemClock` for "now" and `IGuidGenerator` for new IDs. **Never** `DateTime.UtcNow` /
+Inject `ISystemClock` for "now" and `IGuidFactory` (from `Nallian.Common`) for new IDs. **Never** `DateTime.UtcNow` /
 `DateTime.Now` / `Guid.NewGuid()` in entities, services, handlers, or tools. This is what makes
 time/ID behaviour testable (advance the clock; assert deterministic IDs) and lets keys be
 SQL-sequential GUIDs.
