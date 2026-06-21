@@ -13,7 +13,7 @@ This covers **unit tests**. End-to-end tests that boot the host against real inf
 - **XUnit v3**: `[Fact]` / `[Theory]`. Always pass `TestContext.Current.CancellationToken` in async
   tests.
 - **NSubstitute** `Substitute.For<T>()` for dependencies; no hand-rolled fakes unless necessary.
-- Mock `ISystemClock` / `IGuidGenerator` in the **code under test** whenever it stamps timestamps or
+- Mock `ISystemClock` / `IGuidFactory` in the **code under test** whenever it stamps timestamps or
   generates IDs, and assert against the mocked values — never let the behaviour under test reach real
   `DateTime.UtcNow` / `Guid.NewGuid()`. Time-travel by advancing the mocked clock. Throwaway
   **arrange-data** in builders/seeders may call `DateTime.UtcNow` / `Guid.NewGuid()` directly — the

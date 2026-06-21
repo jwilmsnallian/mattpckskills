@@ -18,8 +18,8 @@ paths:
   builder.HasKey(x => x.Id);
   builder.Property(x => x.Id).ValueGeneratedNever(); // we assign Ids via IGuidFactory, not the DB
   ```
-- Generate keys with `IGuidFactory` (SQL-sequential GUIDs, from `Nallian.Common`) to avoid
-  clustered-index fragmentation.
+- Generate keys with your `IGuidFactory` port (SQL-sequential GUIDs; the adapter delegates to
+  `Nallian.Common.Helper.SqlGuid(...)`) to avoid clustered-index fragmentation.
 - Global UTC `DateTime` value converters in `ConfigureConventions`; enums via `HasConversion<int>()`.
 - One `IEntityTypeConfiguration<T>` per entity. Index FK columns; composite indexes for common queries.
 - Reads use `AsNoTracking()`. Multiple independent includes use `AsSplitQuery()`. No lazy loading —

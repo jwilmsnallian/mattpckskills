@@ -6,12 +6,15 @@ Quick reference for all libraries in `Nallian.Extensions`.
 
 | Library | Description |
 |---------|-------------|
-| **Nallian.Common** | Foundation: Result pattern (FluentResults), common exceptions, extension methods |
+| **Nallian.Common** | Foundation: Result pattern (FluentResults), common exceptions, extension methods, `Helper.SqlGuid(...)` sequential-GUID generator |
 | **Nallian.Api.Common** | API framework: base controllers, error handling, Swagger setup |
 | **Nallian.Api.Sdk** | SDK base classes for building typed HTTP clients for Nallian APIs |
 | **Nallian.Api.Sdk.Abstractions** | Abstractions for the API SDK |
 | **Nallian.Extensions.Configuration** | Configuration binding extensions and validation |
 | **Nallian.Cli** | CLI tools for service bus and storage operations |
+
+> **No public `ISystemClock` / `IGuidFactory` in the platform.** Define your own ports; have the
+> `IGuidFactory` adapter delegate to `Nallian.Common.Helper.SqlGuid(...)` for SQL-sequential keys.
 
 ## Data Access
 

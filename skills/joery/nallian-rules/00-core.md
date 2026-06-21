@@ -10,10 +10,11 @@ model, named layers) live in this repo's own `.claude/rules/`.
 - Initialize collections with `= []`, not `= new()` / `= new List<T>()`.
 
 ## Time & identity — never call the ambient APIs
-Inject `ISystemClock` for "now" and `IGuidFactory` (from `Nallian.Common`) for new IDs. **Never** `DateTime.UtcNow` /
-`DateTime.Now` / `Guid.NewGuid()` in entities, services, handlers, or tools. This is what makes
-time/ID behaviour testable (advance the clock; assert deterministic IDs) and lets keys be
-SQL-sequential GUIDs.
+Define your **own** `ISystemClock` and `IGuidFactory` ports in your core and inject them — **never**
+`DateTime.UtcNow` / `DateTime.Now` / `Guid.NewGuid()` in entities, services, handlers, or tools
+(keeps the core dependency-free and time/ID behaviour testable: advance the clock, assert
+deterministic IDs). Implement them in Infrastructure: `IGuidFactory` delegates to
+`Nallian.Common.Helper.SqlGuid(...)` for SQL-sequential keys; `ISystemClock` wraps `DateTime.UtcNow`.
 
 ## Errors travel — catch once at the edge
 - `Result<T>` for **domain outcomes the caller branches on** (not-found, validation, conflict,
