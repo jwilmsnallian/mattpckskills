@@ -8,9 +8,8 @@ model, named layers) live in this repo's own `.claude/rules/`.
   Annotate honestly: `string?` for a genuinely-nullable reference, non-nullable otherwise. Don't
   reach for the null-forgiving `!` to silence a warning you haven't actually reasoned about.
 - Initialize collections with `= []`, not `= new()` / `= new List<T>()`.
-- **One file per type.** One public class/interface/record/enum per file, file named after the
-  type. Don't stack multiple top-level types in one file. (Tightly-coupled exceptions: a type and
-  its small private nested helpers, or a `partial` split across generated + hand-written files.)
+- **One public type per file**, named after the type — don't stack top-level types (`partial`
+  splits of a single type are fine).
 
 ## Time & identity — never call the ambient APIs
 Define your **own** `ISystemClock` and `IGuidFactory` ports in your core and inject them — **never**
