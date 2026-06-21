@@ -8,6 +8,12 @@ paths:
 
 # Application layer (use cases)
 
+- **Organize by vertical slice, not by technical layer.** Group code by feature/business capability
+  (a folder per slice holding its use cases, DTOs, validators, mappers) rather than by `UseCases/`,
+  `Dtos/`, `Validators/` type-buckets. Clean-architecture *dependency* rules still hold (the slice's
+  inner types don't depend on web/infra); slicing is about folder layout, not loosened layering. Where
+  a framework or existing repo layout forbids it, follow the repo — vertical slicing is the default,
+  not an absolute.
 - One use case per business operation. **Never call a use case from another** — share via services or
   the domain model. Keep use cases web-agnostic (no `HttpContext`).
 - One `SaveChangesAsync` per use case = the single transaction boundary. No null-checks on inputs
