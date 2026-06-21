@@ -6,7 +6,7 @@ paths:
 
 # Frontend (React / TypeScript)
 
-Typical Nallian stack: React 18, React Router 7, Formik + Yup, Radix UI, TanStack Query v5, nuqs,
+Typical Nallian stack: React 19, React Router 8, Formik + Yup, Radix UI, TanStack Query v5, nuqs,
 Tailwind CSS 4, Vite, Vitest.
 
 - **Authorization**: check `rights[]` via `hasRight('some-right')` from the auth context — never
