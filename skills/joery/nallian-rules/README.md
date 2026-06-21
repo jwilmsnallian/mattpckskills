@@ -1,3 +1,11 @@
+---
+# Documentation for this rule set, not a rule itself. The path glob below keeps Claude Code
+# from auto-loading it every session — it only enters context if the README is actually read.
+paths:
+  - "**/rules/nallian/README.md"
+  - "**/nallian-rules/README.md"
+---
+
 # Nallian shared .NET rules
 
 Single source of truth for the **transferable** Nallian .NET/React coding conventions. Each Nallian
