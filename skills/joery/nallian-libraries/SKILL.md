@@ -1,12 +1,13 @@
 ---
 name: nallian-libraries
 description: >
-  Look up Nallian library documentation, source code, and usage patterns.
-  Use when you encounter code from a Nallian.* namespace not defined in this project,
-  when sending notifications via the Notification Center SDK, or when consuming the
-  Organisation Data API SDK. Any type, interface, or extension method under a Nallian.*
-  namespace that you cannot find in this repository is most likely provided by one of
-  these libraries.
+  Look up any Nallian.* type or member you can't fully resolve in this repo — its
+  definition, signature, factory methods, or usage. Covers symbols from a Nallian.*
+  namespace not defined in this project, members of a type already used here (e.g.
+  Result's factory methods: Result.NotFound, Result.Conflict, Result.UnAuthorized),
+  the Notification Center SDK, and the Organisation Data API SDK. If you are about to
+  run strings, decompile a DLL, or grep ~/.nuget/packages to find a Nallian.* symbol,
+  stop and use this instead.
 argument-hint: <library-name, "notification-center", or "organisation-sdk">
 ---
 
@@ -21,6 +22,7 @@ Based on the query, determine which reference to load. Load **only one**.
 | Query matches | Reference file |
 |---------------|----------------|
 | "notification-center", "notification", `INotificationCenter`, `NotificationRequest`, receivers, audiences, `IEmailable`, `ISmsable`, `IFeedable` | [references/notification-center.md](references/notification-center.md) |
+| `Nallian.Common`, `Result`, `Result.Ok`, `Result.NotFound`, `Result.Conflict`, `Result.UnAuthorized`, `FluentResults`, common exceptions, `Helper.SqlGuid` — including "I know `Result` but need a specific factory method / its signature" | [references/extensions.md](references/extensions.md) (look up `Nallian.Common`) — see also [references/library-index.md](references/library-index.md) |
 | "organisation-sdk", "org-sdk", `IOrganisationApi`, `OrganisationApiOptions`, consuming the Organisation Data API from another app | [references/organisation-sdk.md](references/organisation-sdk.md) |
 | Any other `Nallian.*` namespace, type, or library name | [references/extensions.md](references/extensions.md) — also consult [references/library-index.md](references/library-index.md) to identify the library |
 
